@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## APIs used
+
+https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather
+https://rapidapi.com/apininjas/api/weather-by-api-ninjas
+https://rapidapi.com/apininjas/api/air-quality-by-api-ninjas/
+
+## Useful sites
+https://www.angularjswiki.com/httpclient/get/
+https://www.youtube.com/watch?v=9FbVRM55wr0

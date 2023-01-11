@@ -1,35 +1,168 @@
 <html>
+<head>
+    <script src="https://kit.fontawesome.com/43dcc20e7a.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
 <body>
-<!-- As a heading -->
-<!-- <nav class="navbar">
-<div class="container-fluid">
-    <span class="navbar-brand mb-0 h1" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">. THE WEATHER</span>
+
+<div class="row" id="row">
+  <!-- <div class="changebg" *ngIf="sym.symbolPhrase == 'clear'"> -->
+      <img src="{{ a }}" alt="">
+  <!-- </div> -->
+    <div class="col-7">
+      <h1 class="display-1">. THE WEATHER</h1>
+      <h1 class="display-6">Find latest weather conditions of India</h1>
+      <!-- <p class="display-1 ms-5" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #ffffff;">London</p> -->
+    </div>
+    <div class="col-5">details
+      <!-- <select class="form-select" aria-label="Default select example">
+        <option selected>Select Location...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select> -->
+      <div class="container">
+        <div class="search-box">
+           <input type="text" id="myInput" name="myInput" #myInput class="search-input" placeholder="Search Location...">
+           <button class="search-button" (click)="showAllData(myInput.value); getlocationid(myInput.value);">
+            <img src="../assets/search32.png">
+           </button>
+        </div>
+      </div>
+      <p class="display-1" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #ffffff;">{{ location }}</p>
+      <p id="demo"></p>
+      <!-- <p class="display-2" style="color: #ffffff">16°</p>  -->
+      <h3 style="color:#ffffff">{{sym.time}}</h3> 
+      <hr style="height: 2px;  border: none; background-color: white; margin-right: 18px;">
+      <h4 style="color: #ffffff;">Weather Details</h4>
+      
+     
+
+      <!-- WEATHER DETAILS -->
+      <table class="table table-borderless" style="color: #ffffff;">
+          <tbody>
+            <tr>
+              <th scope="row"></th>
+              <td>Temperature</td>
+              <td>{{ users.temp }}°</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Feels Like</td>
+              <td>{{ users.feels_like }}°</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Humidity</td>
+              <td>{{ users.humidity }}%</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Minimum Temperature</td>
+                <td>{{ users.min_temp }}°</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>Maximum Temperature</td>
+                <td>{{ users.max_temp }}°</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td>Details</td>
+                <td>{{ sym.symbolPhrase }}</td>
+              </tr>
+          </tbody>
+      </table>
+      <!-- WEATHER DETAILS -->
+
+      <!-- <div class="changebg" *ngIf="sym.symbolPhrase == 'clear'; ">
+        <style>
+          body {
+            background-image: url("../assets/clear.jpg");
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+          }
+        </style>
+      </div> -->
+      <!-- <ng-template #content><style>
+        body {
+          background-image: url("../assets/default.jpg");
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-attachment: fixed;
+        }
+      </style></ng-template> -->
+
+      <!-- <div class="changebg" *ngIf="sym.symbolPhrase == 'clear'">
+        <img src="../assets/clear.jpg" alt="clear">
+      </div> -->
+
+      <hr style="height: 2px;  border: none; background-color: white; margin-right: 18px;">
+
+      <!-- FORECAST DETAILS -->
+      <h4 style="color: #ffffff;">Upcoming Days Forecast</h4>
+      <table class="table table-responsive" style="color: #ffffff;">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Minimum Temperature</th>
+            <th scope="col">Maximum Temperature</th>
+            <th scope="col">Humidity</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">{{ date[date.length - 1]}}</td>
+            <td scope="row">{{ minTemp[minTemp.length - 1] }}°</td>
+            <td scope="row">{{ maxTemp[maxTemp.length - 1] }}°</td>
+            <td scope="row">{{ minRelHumidity[minRelHumidity.length - 1] }}</td>
+            <td scope="row">{{ symbolPhrase[symbolPhrase.length - 1] }}</td>
+          </tr>
+          <tr>
+            <td scope="row">{{ date[date.length - 2]}}</td>
+            <td scope="row">{{ minTemp[minTemp.length - 2] }}°</td>
+            <td scope="row">{{ maxTemp[maxTemp.length - 2] }}°</td>
+            <td scope="row">{{ minRelHumidity[minRelHumidity.length - 2] }}</td>
+            <td scope="row">{{ symbolPhrase[symbolPhrase.length - 2] }}</td>
+          </tr>
+          <tr>
+            <td scope="row">{{ date[date.length - 3]}}</td>
+            <td scope="row">{{ minTemp[minTemp.length - 3] }}°</td>
+            <td scope="row">{{ maxTemp[maxTemp.length - 3] }}°</td>
+            <td scope="row">{{ minRelHumidity[minRelHumidity.length - 3] }}</td>
+            <td scope="row">{{ symbolPhrase[symbolPhrase.length - 3] }}</td>
+          </tr>
+          <tr>
+            <td scope="row">{{ date[date.length - 4]}}</td>
+            <td scope="row">{{ minTemp[minTemp.length - 4] }}°</td>
+            <td scope="row">{{ maxTemp[maxTemp.length - 4] }}°</td>
+            <td scope="row">{{ minRelHumidity[minRelHumidity.length - 4] }}</td>
+            <td scope="row">{{ symbolPhrase[symbolPhrase.length - 4] }}</td>
+          </tr>
+          <tr>
+            <td scope="row">{{ date[date.length - 5]}}</td>
+            <td scope="row">{{ minTemp[minTemp.length - 5] }}°</td>
+            <td scope="row">{{ maxTemp[maxTemp.length - 5] }}°</td>
+            <td scope="row">{{ minRelHumidity[minRelHumidity.length - 5] }}</td>
+            <td scope="row">{{ symbolPhrase[symbolPhrase.length - 5] }}</td>
+          </tr>
+      </table>
+
+       <!-- FORECAST DETAILS -->
+    </div>
   </div>
-</nav> -->
-<!-- <div class="col-2">
-<p class="display-6" style="font-weight: 500;">. THE WEATHER</p>
-</div> -->
-<!-- <div class="major">
-  jfjfid
-</div>
-<div class="details">
-</div> -->
-<div class="row">
-  <div class="col-7">
-    <h1 class="display-1">. THE WEATHER</h1>
-    <!-- <p class="display-1 ms-5" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #ffffff;">London</p> -->
-  </div>
-  <div class="col-5">details
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Select Location...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-    <p class="display-1" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: #ffffff;">London</p>
-    <p class="display-2" style="color: #ffffff">16°</p>
-  </div>
-</div>
+      <!-- {{ users.temp }}
+      {{users.cloud_pct}}
+      <li *ngFor="let user of users.data">
+        <span>{{ user.temp }} {{ user.temp }}</span>
+      </li> -->
+
+      
 </body>
 </html>
+
 <router-outlet></router-outlet>
